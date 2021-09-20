@@ -1,9 +1,18 @@
 public class les2 {
     public static void main(String[] args) {
-        dog Dog = new dog("1","2","3");
+        Veterinar vet = new Veterinar();
+        Animal[] animals = new Animal[3];
+        animals[0] = new dog("собака","корм","вольер");
+        animals[1] = new cat("кошка","висказ","дом");
+        animals[2] = new horse("лошадь", "сено", "стойло");
+
+        for (Animal animal : animals){
+            vet.treatAnimal(animal);
+        }
+
     }
 
-    class Animal{
+    public static class Animal{
         String food;
         String location;
         String name;
@@ -26,7 +35,7 @@ public class les2 {
         }
     }
 
-    class dog extends Animal {
+    static class dog extends Animal {
 
         dog(String name, String food, String location) {
             super(name, food, location);
@@ -34,7 +43,7 @@ public class les2 {
 
         @Override
         public void makeNoise(){
-            System.out.println(this.name + " крепко спит");
+            System.out.println(this.name + " гавкает");
         }
 
         @Override
@@ -44,7 +53,7 @@ public class les2 {
 
     }
 
-    class cat extends Animal {
+    static class cat extends Animal {
 
         cat(String name, String food, String location) {
             super(name, food, location);
@@ -52,7 +61,7 @@ public class les2 {
 
         @Override
         public void makeNoise(){
-            System.out.println(this.name + " дремлет");
+            System.out.println(this.name + " мяукает");
         }
 
         @Override
@@ -62,7 +71,7 @@ public class les2 {
 
     }
 
-    class horse extends Animal {
+    static class horse extends Animal {
 
         horse(String name, String food, String location) {
             super(name, food, location);
@@ -70,7 +79,7 @@ public class les2 {
 
         @Override
         public void makeNoise(){
-            System.out.println(this.name + " сладко спит");
+            System.out.println(this.name + " крехтит");
         }
 
         @Override
@@ -80,7 +89,7 @@ public class les2 {
 
     }
 
-    class Veterinar{
+    public static class Veterinar{
         public void treatAnimal(Animal animal){
             animal.makeNoise();
             animal.eat();
