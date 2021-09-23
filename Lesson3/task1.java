@@ -1,7 +1,7 @@
 package Lesson3;
 
 class task1{
-    public static void main(String[] args){
+    public static void main(String[] vma){
         Flower blue_rose = new Rose("Blue", 80);
         Flower red_rose = new Rose("Red", 67);
         Flower white_rose = new Rose("White", 90);

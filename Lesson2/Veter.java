@@ -1,7 +1,7 @@
 package Lesson2;
 
 public class Veter {
-    public static void main(String[] args) {
+    public static void main(String[] vma) {
         Veterinar vet = new Veterinar();
         Animal[] animals = new Animal[3];
         animals[0] = new dog("корм","вольер");

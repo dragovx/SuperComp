@@ -1,7 +1,7 @@
 package Lesson2;
 
 public class Study {
-    public static void main(String[] msi) {
+    public static void main(String[] vma) {
         Student student = new Student("Sergey", "Shishkin", "bap1801", 4.5);
         Aspirant aspirant = new Aspirant("Nikita", "Belov", "isua", 4, "drone");
         Student un = new Aspirant("Andrey", "Eliseev", "bap1801", 5, "aboutSpace");

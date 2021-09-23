@@ -3,7 +3,7 @@ package Lesson1;
 import java.util.Scanner;
 
 public class les1 {
-    public static void main(String[] args) {
+    public static void main(String[] vma) {
         Scanner scan = new Scanner(System.in);
         System.out.print("Введите номер задания:");
         int num = scan.nextInt();
