@@ -38,7 +38,8 @@ public class les1 {
                 } else if (a<0){
                     System.out.println("Ответ = " + (a - 2));
                 } else {
-                    System.out.println("Ответ = 10");
+                    a = 10;
+                    System.out.println("Ответ = " + a);
                 }
                 break;
             case (5):

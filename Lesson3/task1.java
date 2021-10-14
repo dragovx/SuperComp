@@ -10,7 +10,7 @@ class task1{
         Flower carnation = new Carnation("green", 45);
         Flower[] bouquet1 = {blue_rose, tulip, carnation};
         Flower[] bouquet2 = {red_rose, red_rose, gladiolus};
-        Flower[] bouquet3 ={blue_rose, blue_rose, blue_rose};
+        Flower[] bouquet3 ={blue_rose, blue_rose, white_rose};
         System.out.println(bouquet1.length+bouquet2.length+bouquet3.length);
     }
 
