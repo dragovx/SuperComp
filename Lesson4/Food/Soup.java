@@ -1,4 +1,4 @@
-package less4.Food;
+package Lesson4.Food;
 
 public class Soup extends Food {
 

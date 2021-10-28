@@ -1,4 +1,4 @@
-package less4.Building;
+package Lesson4.Building;
 
 public class House extends Building {
 

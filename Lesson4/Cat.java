@@ -1,4 +1,4 @@
-package less4;
+package Lesson4;
 
 public class Cat extends Animal {
   private String color;

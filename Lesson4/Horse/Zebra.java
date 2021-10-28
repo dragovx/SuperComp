@@ -1,4 +1,4 @@
-package less4.Horse;
+package Lesson4.Horse;
 
 public class Zebra extends Horse {
 
