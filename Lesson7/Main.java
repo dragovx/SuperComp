@@ -1,6 +1,7 @@
 package Lesson7;
  
 import java.util.Scanner;
+import java.io.*;
  
 public class Main{
 
@@ -14,7 +15,7 @@ public class Main{
         if (!client.isAuth(login, password)) {
             getMenu();
         }
- 
+        
     }
     
     public static void getMenu() {
@@ -22,6 +23,7 @@ public class Main{
         System.out.println("1.Категории товаров");
         System.out.println("2.Корзина");
         System.out.println("3.Оплатить");
+        System.out.println("4.Вывести предыдущие покупки");
         System.out.println("0.Выход");
         System.out.println();
         Scanner sc = new Scanner(System.in);
@@ -41,32 +43,70 @@ public class Main{
                     Buy();
                     break;
                 }
+                case 4: {
+                    outString();
+                    break;
+                }
                 case 0: {
                     break;
                 }
                 default:{
-                    System.out.println("Мансур дурак");
+                    System.out.println("Неправильный номер");
                     break;
                 }
             }  
         } else {
-            System.out.println("Мансур неправильный");
+            System.out.println("Такого параметра не существует");
             getMenu();
         }
+        
     }
 
     public static void Buy() {
         Basket cards = new Basket(card);
         client.purchased = cards;
+        String result = "";
         System.out.println("Товарный чек");
         for(int i = 0; i < client.purchased.purchased.length; ++i) {
             if(client.purchased.purchased[i] == null) break;
-            System.out.println((i+1) + ". " + client.purchased.purchased[i].nameProduct + " в количестве. " + client.purchased.purchased[i].count + " Стоит " 
-        + client.purchased.purchased[i].cost*client.purchased.purchased[i].count + " руб.");
+            System.out.println((i+1) + "." + client.purchased.purchased[i].toString());
+            result += ((i+1) + "." + client.purchased.purchased[i].toString() + "\n");
         }
         double gc = getCash(client.purchased.purchased);
-        System.out.print("Общая сумма покупок составляет = " + gc + "руб.");
+        System.out.print("Общая сумма покупок составляет = " + gc + " руб.");
+        result+="Общая сумма покупок составляет = " + gc + " руб.";
+
+        try {
+            FileOutputStream outputStream = new FileOutputStream(new File("Lesson7\\Basket.ser"));
+            ObjectOutputStream objectOutputStream;
+            objectOutputStream = new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(result);
+            objectOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         
+
+    public static void outString(){
+        try {
+            FileInputStream fileInputStream = new FileInputStream(new File("Lesson7\\Basket.ser"));
+            try {
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                try {
+                    String savedGame = (String) objectInputStream.readObject();
+                    System.out.println(savedGame);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                objectInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        getMenu();
     }
 
     public static double getCash(Product[] p) {
@@ -102,6 +142,7 @@ public class Main{
         Scanner sc = new Scanner(System.in);
         int number = sc.nextInt();
         if(number == 0)getMenu();
+        
     }
     
     public static void seeProduct(Category cat) { 
@@ -114,6 +155,7 @@ public class Main{
         int number = sc.nextInt();
         if(number == 0)getCategory(all);
         else buyProduct(cat.products[number-1]);
+        
     }
     
     private static void buyProduct(Product p) {
@@ -143,7 +185,7 @@ public class Main{
  
     static Product milk = new Product("Молоко", 123.0);
     static Product kefir = new Product("Кефир", 86.0);
-    static Product curd = new Product("Творог", 75.0123);
+    static Product curd = new Product("Творог", 75.50);
 
     static Product soap = new Product("Мыло", 109.99);
     static Product powder = new Product("Стиральный порошок", 249.99);
@@ -160,5 +202,4 @@ public class Main{
     static Category[] all = { bakery, diary, grocery };
     static Product[] card;
     static User client;
- 
 }
